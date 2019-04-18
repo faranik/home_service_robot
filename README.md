@@ -9,7 +9,7 @@ For convinience, install **xterm** to be able to start the entire solution by ex
 sudo apt install xterm
 ```
 
-For official ROS packages should be cloned to the ```src``` folder of your ```catkin workspace```. Be sure to clone the full GitHub directory and not just the package itself.
+Four official ROS packages should be cloned to the ```src``` folder of your ```catkin workspace```. Be sure to clone the full GitHub directory and not just the package itself.
 
 1. [gmapping](http://wiki.ros.org/gmapping): With the gmapping_demo.launch file, you can easily perform SLAM and build a map of the environment with a robot equipped with laser range finder sensors or RGB-D cameras.
 2. [turtlebot_teleop](http://wiki.ros.org/turtlebot_teleop): With the keyboard_teleop.launch file, you can manually control a robot using keyboard commands.
