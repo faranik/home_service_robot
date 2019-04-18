@@ -24,4 +24,18 @@ git clone https://github.com/turtlebot/turtlebot_interactions.git
 git clone https://github.com/turtlebot/turtlebot_simulator.git
 ```
 
+## Troubleshooting
+If you run the test_navigation.sh file and the turtlebot robot is pirouetting after you set a ```2D Nav Goal``` then you probably have some inconsistencies with parameters of move base between local and global planner. Try to edit ```dwa_local_planner_params.yaml``` file from ```turtlebot_navigation``` package. In my case it is at this location ```/opt/ros/kinetic/share/turtlebot_navigation/param/dwa_local_planner_params.yaml```. The parameters that worked for me are:
+```
+  max_trans_vel: 0.3 # choose slightly less than the base's capability
+  min_trans_vel: 0.1  # this is the min trans velocity when there is negligible rotational velocity
+  trans_stopped_vel: 0.1
 
+  # Warning!
+  #   do not set min_trans_vel to 0.0 otherwise dwa will always think translational velocities
+  #   are non-negligible and small in place rotational velocities will be created.
+
+  max_rot_vel: 0.5  # choose slightly less than the base's capability
+  min_rot_vel: 0.4  # this is the min angular velocity when there is negligible translational velocity
+  rot_stopped_vel: 0.3
+```
