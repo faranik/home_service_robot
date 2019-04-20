@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 2.8.3)
 project(add_markers)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
-# add_compile_options(-std=c++11)
+td::make_shared<int>(bar)dd_compile_options(-std=c++11)
 
 ## Find catkin macros and libraries
 ## if COMPONENTS list like find_package(catkin REQUIRED COMPONENTS xyz)
@@ -10,6 +10,7 @@ project(add_markers)
 find_package(catkin REQUIRED COMPONENTS
   roscpp
   visualization_msgs
+  geometry_msgs
 )
 
 ## System dependencies are found with CMake's conventions
@@ -120,9 +121,9 @@ include_directories(
 )
 
 ## Declare a C++ library
-# add_library(${PROJECT_NAME}
-#   src/${PROJECT_NAME}/add_markers.cpp
-# )
+#add_library(${PROJECT_NAME}_lib
+#  src/MarkerManager.cpp
+#)
 
 ## Add cmake target dependencies of the library
 ## as an example, code may need to be generated before libraries
@@ -132,7 +133,7 @@ include_directories(
 ## Declare a C++ executable
 ## With catkin_make all packages are built within a single CMake context
 ## The recommended prefix ensures that target names across packages don't collide
-add_executable(${PROJECT_NAME} src/add_markers.cpp)
+add_executable(${PROJECT_NAME} src/MarkerManager.cpp src/add_markers.cpp)
 
 ## Rename C++ executable without prefix
 ## The above recommended prefix causes long target names, the following renames the
