@@ -72,18 +72,21 @@ private:
   // Tell the action client that we want to spin a thread by default
   MoveBaseClient ac;
 
-};//End of class SubscribeAndPublish
+};
 
 int main(int argc, char **argv)
 {
   // Initiate ROS
   ros::init(argc, argv, "mover");
 
-  // Create an object of class SubscribeAndPublish that will take care of everything
-  SubscribeAndPublish SAPObject;
+  if(ros::ok())
+  {
+    // Create an object of class SubscribeAndPublish that will take care of everything
+    SubscribeAndPublish SAPObject;
 
-  // Wait in peace.
-  ros::spin();
+    // Wait in peace.
+    ros::spin();
+  }
 
   return 0;
 }
