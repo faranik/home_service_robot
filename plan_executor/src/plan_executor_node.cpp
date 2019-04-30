@@ -28,8 +28,8 @@ public:
                             {2, 0, 4.0, 0.0},
                             {3, 0, 4.0, 1.0},
                             {4, 0, 4.0, 2.0}};
-    ROS_INFO("Place the objects");
 
+    // Place some objects in the environment.
     for(int i = 0; i < 5; ++i)
     {
       obj_manipulator::ObjManipulation manipulationSrv;
@@ -44,8 +44,7 @@ public:
       }
     }
 
-    ROS_INFO("Move robot");
-
+    // Start collecting the objects at the same place.
     float delta = 0.0;
     for(int i = 0; i < 5; ++i)
     {
@@ -59,6 +58,7 @@ public:
         continue;
       }
 
+      // Simulate a pick up object.
       obj_manipulator::ObjManipulation manipulationSrv;
       manipulationSrv.request.id = requestsToManipulate[i].id;
       manipulationSrv.request.command = 1;
@@ -79,6 +79,7 @@ public:
         continue;
       }
       
+      // Simulate a drop off object.
       manipulationSrv.request.id = requestsToManipulate[i].id;
       manipulationSrv.request.command = requestsToManipulate[i].command;
       manipulationSrv.request.x = -4.0;
@@ -124,8 +125,8 @@ int main(int argc, char **argv)
   if(ros::ok())
   {
     //Create an object of class SubscribeAndPublish that will take care of everything
-    SubscribeAndPublish SAPObject;
-    SAPObject.run();
+    SubscribeAndPublish sapObject;
+    sapObject.run();
 
     ros::spin();
   }
