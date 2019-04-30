@@ -9,8 +9,7 @@ typedef actionlib::SimpleActionClient<move_base_msgs::MoveBaseAction> MoveBaseCl
 class SubscribeAndPublish
 {
 public:
-  SubscribeAndPublish() :
-    ac("move_base", true)
+  SubscribeAndPublish()
   {
     // Define a move service with a handle_move_request callback function
     srv = n.advertiseService("/robot_mover", &SubscribeAndPublish::handleMoveRequest, this);
@@ -19,6 +18,9 @@ public:
   // This callback function executes whenever a move service is requested
   bool handleMoveRequest(mover::Move::Request& req, mover::Move::Response& res)
   {
+    // Tell the action client that we want to spin a thread by default
+    MoveBaseClient ac("move_base", true);
+
     // Wait for move_base action server to come up
     while(!ac.waitForServer(ros::Duration(5.0)))
     {
@@ -61,7 +63,7 @@ public:
 
     ROS_INFO_STREAM(res.status);
 
-    return true;
+    return res.status == 0;
   }
 
 
@@ -69,9 +71,6 @@ private:
   ros::NodeHandle n; 
   ros::ServiceServer srv;
   
-  // Tell the action client that we want to spin a thread by default
-  MoveBaseClient ac;
-
 };
 
 int main(int argc, char **argv)

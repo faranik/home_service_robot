@@ -49,7 +49,7 @@ public:
     }
 
     ROS_INFO_STREAM(res.status);
-    return true;
+    return res.status == OK;
   }
 
 private:
